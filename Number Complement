@@ -1,0 +1,16 @@
+/* link to  day 4 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3319/
+
+approach used in this problem is as follows:
+1. Find the number of bits in the given integer
+2. XOR the given integer with 2^number_of_bits-1 */
+
+class Solution {
+    public int findComplement(int num) {
+         if(num==0) return 1;
+        int bits=(int)(Math.log(num)/Math.log(2))+1;
+        int mask=(1<<bits)-1;
+        return num^mask;
+       
+    }
+}
+
