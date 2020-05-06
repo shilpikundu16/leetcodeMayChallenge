@@ -1,0 +1,29 @@
+/* Link to day 5 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3320/
+
+In this we have used a hashmap to scan through s and keeping frequency count of each letter.
+Then we just check for a frequency of  1 character and just  as it is found ,we break and then return its index.
+The time complexity is O(s) as the string need to be traversed at-least once.
+*/
+
+class Solution {
+    public int firstUniqChar(String s) {
+        Map<Character, Integer> hmap= new HashMap<>();
+        for(char ch:s.toCharArray()){
+            if(hmap.containsKey(ch))
+                    hmap.put(ch,hmap.get(ch)+1);
+            else
+                hmap.put(ch,1);
+        }
+        char c1='\0';
+        for(char ch: s.toCharArray()){
+            if(hmap.get(ch)==1){
+               c1=ch;
+               break;
+            }        
+        }
+        if(c1!='\0')
+            return s.indexOf(c1);
+        else
+            return -1;
+    }
+}
