@@ -1,0 +1,36 @@
+/*
+Link to day 3 Problem : https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3318/
+
+We use a hash table here to scan the magazine letters, Keeping a count of the letters. This is done in O(m).
+Now, iterate through the ransom note and check if the letter in ransomnote[i] exists in the hash table. 
+If so, decrement the value. If the letter doesn’t exist or the value is already zero, exit with negative status.
+This is done in O(n). The final solution will be done in O(m+n).
+*/
+
+
+
+
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+         Map<Character, Integer> map = new HashMap<>();
+        for(char c: magazine.toCharArray()) {
+            if(map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else {
+                map.put(c, 1);
+            }
+        }
+        for(char c: ransomNote.toCharArray()) {
+            if (map.containsKey(c)) {
+                if(map.get(c) > 1) {
+                    map.put(c, map.get(c) - 1);
+                } 
+                else
+                    map.remove(c);
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+}
