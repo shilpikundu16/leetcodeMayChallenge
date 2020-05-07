@@ -1,0 +1,23 @@
+/* link to day 6 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3321/
+
+in this problem, hashmap has been used. The time and space complexity here is O(n) both.
+A better approach to this problem would be to use Moore's Voting algorithm, so  do check that out too. */
+
+
+import java.lang.Math; 
+class Solution {
+    public int majorityElement(int[] nums) {
+        long count=(long)Math.floor(nums.length/2);
+        Map<Integer, Integer> hmap= new HashMap<>();
+        for(int x:nums){
+            if(hmap.containsKey(x))          
+                hmap.put(x,hmap.get(x)+1);
+            else
+                hmap.put(x,1);
+        }
+        for(int x:nums){
+            if(hmap.get(x)>count)
+                return x;
+        }    
+    }
+}
