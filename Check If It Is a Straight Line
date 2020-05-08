@@ -1,0 +1,23 @@
+/* link to day 8 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3323/
+
+We use the simple concept of finding slope. For all the points to fall on the same line , all should have the same slope.
+slope of first two points is calculated by: slope= (y2-y1)/(x2-x1)
+with the first  point ,we calculate slope of all the other points, whenever we see a different slope, we return false.
+Time complexity: O(n)
+Space Complexity: O(1) */
+
+
+
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) {
+        int y= coordinates[1][1]-coordinates[0][1];
+        int x= coordinates[1][0]-coordinates[0][0];
+        for(int i=2; i<coordinates.length; i++){ 
+            int y1= coordinates[i][1]-coordinates[0][1];
+            int x1= coordinates[i][0]-coordinates[0][0];
+            if(y*x1!=x*y1)
+                return false;
+        }
+        return true;
+    }
+}
