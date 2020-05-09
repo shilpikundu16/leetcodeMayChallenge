@@ -1,0 +1,28 @@
+/* link to day 9 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3324/
+
+The brute force approach is also acceptable but the approach  used here involves using binary search 
+which improves the time complexity of the problem to a huge extent from 0(n) to (log n). */
+
+
+
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        return bSearch(0,num,num);
+    }
+	
+    boolean bSearch(long low, long high, long n)
+    {
+        long mid;
+        while(low<=high)
+        {
+            mid=(low+high)/2;
+            if(n==mid*mid)
+                return true;
+            else if(n<mid*mid)
+                high=mid-1;
+            else
+                low=mid+1;
+        }
+        return false;
+    }
+}
