@@ -1,0 +1,28 @@
+/*Link to day 10 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3325/
+
+Considering trust as a graph, all pairs are directed edge.
+The point with in-degree - out-degree = N - 1 become the judge.
+We Count the degree, and check at the end.
+
+Time Complexity:O(T + N)
+space complexity: O(N) */
+
+
+
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+       int[] count = new int[N + 1];
+        
+        for (int[] x : trust) {
+            count[x[0]]--;
+            count[x[1]]++;
+        }
+        
+        for (int i = 1; i <= N; i++) {
+            if (count[i] == N - 1) {
+                return i;
+            }
+        }      
+        return -1;
+    }
+}
