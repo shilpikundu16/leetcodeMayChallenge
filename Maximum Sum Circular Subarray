@@ -1,0 +1,27 @@
+/** link to day 15 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/536/week-3-may-15th-may-21st/3330/
+
+Approach: Here maximum sum is either max (we get using kadane's algo) or (sum - min).
+There is a special case, if sum == min, then maximum sum is max.
+So we Find maximum(max) and minimum(min) subarray sum using kadane's algorithm (max) and total sum of the array (sum).
+Now, if sum == min return max else, return maximum ( max, sum - min )  */
+
+class Solution {
+    public int maxSubarraySumCircular(int[] A) {
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        int cur1=0,cur2=0,total=0;
+        
+        for(int i=0;i<A.length;i++){
+            cur1+=A[i];
+            max=Math.max(max,cur1);
+            cur1=Math.max(cur1,0);
+            
+            cur2+=A[i];
+            min=Math.min(min,cur2);
+            cur1=Math.min(cur2,0);
+            
+            total+=A[i];
+        }
+        return max<0? max: Math.max(max, total-min);
+    }
+}
