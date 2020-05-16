@@ -1,0 +1,35 @@
+/** link to day 11 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/536/week-3-may-15th-may-21st/3331/
+
+Approach: We floodfill the starting pixel by changing the color of that pixel to the new color, 
+        then check the 4 adjacent pixels to make sure they are valid pixels of the same color, 
+        and if they're valid ones, we floodfill those, and continue this throughout.
+        We use a function dfs to perform a floodfill on a target pixel.
+        
+Time Complexity: O(N), where N is the number of pixels in the image.
+Space Complexity: O(N), the size of the implicit call stack when calling dfs.  */
+
+
+
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+       if(newColor == image[sr][sc]) return image;
+        DFS(image, sr, sc, newColor, image[sr][sc]);
+        return image;
+    }
+    
+    void DFS(int[][] image, int row, int col, int color, int oldColor) {
+        if(row >= image.length || row < 0 || col >= image[0].length || col < 0  || image[row][col] != oldColor) return;
+        
+        
+        image[row][col] = color;
+        
+        DFS(image, row - 1, col, color, oldColor);
+        DFS(image, row + 1, col, color, oldColor);
+        DFS(image, row, col-1, color, oldColor);
+        DFS(image, row, col+1, color, oldColor);
+            
+    }
+}
+
+
+
