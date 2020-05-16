@@ -1,0 +1,30 @@
+/** link to day 12 problem: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/535/week-2-may-8th-may-14th/3327/
+
+Approach: We have used binary search here thus ensuring time complexity of O(log n) and space complexity of O(1).
+
+class Solution {
+    public int singleNonDuplicate(int[] nums) {
+         int left = 0, right = nums.length - 1;
+        while(left < right){
+            int mid = (left + (right - left) / 2); // 
+            if(nums[mid - 1] == nums[mid]){
+            // check whether the right part has even length or of odd length
+                boolean isEven = ((right - mid) % 2 == 0); 
+                if(isEven)
+                    right = mid - 2; //move on to the left part
+                else
+                    left = mid + 1; //move on to the right part
+            }
+            else if(nums[mid] == nums[mid + 1]){
+              boolean isEven = ((right - mid + 1) % 2 == 0); 
+                if(isEven)
+                    right = mid - 1; //move on to the left part
+                else
+                    left = mid + 2; //move on to the right part
+            }
+            else
+                return nums[mid]; //current element is the unique element
+            }
+        return nums[left];
+        }           
+}
